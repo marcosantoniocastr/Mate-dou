@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mate TIC</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f3f4f6; /* Fondo suave */
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between; /* Espacio entre los elementos */
+            padding: 10px; /* Espaciado alrededor */
+            background-color: #4f46e5; /* Fondo morado */
+            color: white; /* Color del texto */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+        }
+        .navigation a {
+            color: white; /* Color del enlace */
+            text-decoration: none; /* Sin subrayado */
+            font-weight: bold; /* Enlace en negrita */
+            transition: color 0.3s ease;
+        }
+        .navigation a:hover {
+            color: #a5b4fc; /* Cambio de color al pasar el cursor */
+        }
+        audio {
+            display: none; /* Ocultar el reproductor */
+        }
+    </style>
+    <script>
+        var voz = new SpeechSynthesisUtterance();
+        voz.lang = "es-Es";
+        voz.volume = 1;
+        voz.rate = 0.8; // Velocidad de habla
+        voz.pitch = 1; // Tono normal
+
+        function speech() {
+            var content = document.querySelectorAll('p, span');
+            var fullText = "";
+            content.forEach(function (element) {
+                fullText += element.innerText + " ";
+            });
+            if (fullText != "") {
+                voz.text = fullText;
+                window.speechSynthesis.speak(voz);
+            }
+            alert("Procesando...");
+        }
+
+        // Detectar cuando el usuario deja la página
+        document.addEventListener('visibilitychange', function () {
+            if (document.visibilityState === 'hidden') {
+                window.speechSynthesis.cancel(); // Detener lectura
+            }
+        });
+
+        // Configurar la voz adecuada
+        var timer = setInterval(function () {
+            var voices = speechSynthesis.getVoices();
+            if (voices.length != 0) {
+                voz.voice = voices[0];
+                clearInterval(timer);
+            }
+        }, 1000);
+    </script>
+    <script type="text/javascript" charset="utf-8">
+      const audioElement = document.getElementById('audio');
+
+        // Esperar a que se cargue el audio antes de ajustar el volumen
+        audioElement.addEventListener('loadeddata', function() {
+            // Establecer el volumen (de 0.0 a 1.0)
+            audioElement.volume = 0.3; // Establecer el volumen a 30%
+        });
+    </script>
+</head>
+<body class="font-sans bg-gray-100">
+  <audio id="audio" autoplay loop>
+        <source src="audio.mp3" type="audio/mpeg"> <!-- Cambia "musica.mp3" por el nombre de tu archivo -->
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    <main class="max-w-4xl mx-auto p-8 rounded-lg shadow-xl bg-white mt-10">
+        <h1 class="text-4xl font-bold mt-4 mb-6 text-center text-purple-700">Mate TIC</h1>
+        <button class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500 transition duration-300 ease-in-out" onclick="speech()">Leer en voz alta</button>
+        <br /><br />
+
+        <table class="w-full border border-gray-300 rounded-lg mb-6">
+            <tr>
+                <th class="p-4 bg-purple-500 text-white text-lg">Conjuntos e Intervalos Numéricos</th>
+            </tr>
+        </table>
+
+        <details class="mb-4">
+            <summary class="font-semibold text-xl text-blue-600">Secciones</summary>
+            <p class="ml-4 mt-2">1- Conjuntos</p>
+            <p class="ml-4">2- Intervalos numéricos</p>
+        </details>
+
+        <article>
+            <h2 class="text-2xl font-bold mb-2 text-purple-600">Conjunto, elemento, notación por extensión, pertenencia, cardinalidad de conjunto</h2>
+            <p class="mb-4 text-gray-700 text-justify">
+                Primero debes saber qué es un <span class="font-semibold text-blue-600">conjunto</span> en Matemáticas. Bueno, piensa en una caja llamada A, que contiene objetos. Esa caja tiene un conjunto de cosas que puedes comparar con otras, como con otra caja. A esto se le llama conjunto.
+            </p>
+            <p class="mb-4 text-gray-700 text-justify">
+                Un <span class="font-semibold text-blue-600">elemento</span> es lo que está dentro de la caja. Ese objeto puede ser un número dentro de una caja A; la caja se llama conjunto.
+            </p>
+            <p class="mb-4 text-gray-700 text-justify">
+                Para <span class="font-semibold text-blue-600">denotar un conjunto</span>, encerramos sus elementos entre llaves { }. Por ejemplo, A = {1, 2, 3}, donde 1, 2 y 3 son los elementos del conjunto A.
+            </p>
+            <p class="mb-4 text-gray-700 text-justify">
+                La <span class="font-semibold text-blue-600">pertenencia</span> indica si un elemento está o no en un conjunto. A = {1, 2, 3} indica que 1, 2 y 3 pertenecen al conjunto A, pero 9 no.
+            </p>
+            <p class="mb-4 text-gray-700 text-justify">
+                La <span class="font-semibold text-yellow-500">cardinalidad</span> de un conjunto A, denotada como n(A), es la cantidad de elementos que contiene. Ejemplo: B = {a, e, i, o, u} tiene 5 elementos, así que n(B) = 5.
+            </p>
+        </article>
+
+        <div class="navigation mt-6">
+            <div><a href="index.html">Atrás</a></div>
+            <div><a href="siguiente-page.html">Siguiente</a></div>
+        </div>
+    </main>
+
+</body>
+</html>

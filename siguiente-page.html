@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mate TIC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #ffcc00; /* Color amarillo */
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+        }
+        .resultado-table {
+            max-width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .resultado-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .resultado-table th, .resultado-table td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        .resultado-table th {
+            background-color: #f4f4f4;
+        }
+        .justificacion {
+            color: red;
+            font-size: 0.9em;
+        }
+        .navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.navigation a {
+    display: block;
+    padding: 10px 20px;
+    background-color: #28a745; /* Color verde */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s; /* Efecto de transición */
+}
+
+.navigation a:hover {
+    background-color: #218838; /* Color verde más oscuro al pasar el ratón */
+    transform: scale(1.05); /* Efecto de zoom */
+}
+
+.navigation a:active {
+    transform: scale(0.95); /* Efecto de presionar */
+}
+
+    </style>
+</head>
+<body>
+    <audio id="audio" autoplay loop>
+        <source src="audio.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    <main class="container">
+        <header>
+            <h1>Mate TIC</h1>
+            <h2>Ejemplos</h2>
+            <button onclick="speech()">Leer en voz alta</button>
+        </header>
+        <article>
+            <p>Ejercicios, resuelve con tu conocimiento obtenido de la práctica teórica.</p>
+            <div>
+                <h1>Ejercicio de Conjuntos</h1>
+                <p>
+                    Dado los conjuntos <strong>A = {−2, −1, 0, 2, 3}</strong>, <strong>B = {−1, 2, 3}</strong> y <strong>C = {−2, 0, 3, 4}</strong>, complete con <strong>∈</strong> o <strong>∉</strong> según corresponda:
+                </p>
+
+                <!-- Formulario de ejercicio -->
+                <form id="conjuntosForm">
+                    <div>
+                        <label>a) 3 ∈/∉ A</label>
+                        <select id="respuesta1">
+                            <option value="∈">∈</option>
+                            <option value="∉">∉</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>b) 5 ∈/∉ B</label>
+                        <select id="respuesta2">
+                            <option value="∈">∈</option>
+                            <option value="∉">∉</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>c) −2 ∈/∉ B</label>
+                        <select id="respuesta3">
+                            <option value="∈">∈</option>
+                            <option value="∉">∉</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>d) 4 ∈/∉ C</label>
+                        <select id="respuesta4">
+                            <option value="∈">∈</option>
+                            <option value="∉">∉</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>e) 0 ∈/∉ A</label>
+                        <select id="respuesta5">
+                            <option value="∈">∈</option>
+                            <option value="∉">∉</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>f) −1 ∈/∉ B</label>
+                        <select id="respuesta6">
+                            <option value="∈">∈</option>
+                            <option value="∉">∉</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>g) 2 ∈/∉ B</label>
+                        <select id="respuesta7">
+                            <option value="∈">∈</option>
+                            <option value="∉">∉</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>h) 2 ∈/∉ C</label>
+                        <select id="respuesta8">
+                            <option value="∈">∈</option>
+                            <option value="∉">∉</option>
+                        </select>
+                    </div>
+
+                    <button type="button" onclick="verificarRespuestas()">Verificar</button>
+                </form>
+
+                <!-- Mostrar resultado -->
+                <div id="resultado" class="resultado-table"></div>
+            </div>
+        </article>
+        <div class="navigation">
+            <div>
+                <a href="iniciatravesia.html">Atrás</a>
+            </div>
+            <div>
+                <a href="siguiente-page1.html">Siguiente</a>
+            </div>
+        </div>
+    </main>
+
+    <script type="text/javascript" charset="utf-8">
+        function speech() {
+            var content = document.querySelectorAll('p, span');
+            var typetext = "";
+            content.forEach(function (element) {
+                typetext += element.innerText + " ";
+            });
+            if (typetext != "") {
+                voz.text = typetext;
+                window.speechSynthesis.speak(voz);
+            }
+            alert("Descifrando...");
+        }
+
+        var voz = new SpeechSynthesisUtterance();
+        voz.lang = "es-Es";
+        voz.volume = 1;
+        voz.rate = 0.8; // Velocidad de habla (1 es normal)
+        voz.pitch = 1; // Tono (1 es el tono normal)
+
+        var timer = setInterval(function () {
+            var voices = speechSynthesis.getVoices();
+            if (voices.length != 0) {
+                voz.voice = voices[0];
+                voz.voiceURI = voices[0].voiceURI;
+                clearInterval(timer);
+            }
+            console.log(voices);
+        }, 1000);
+
+        function verificarRespuestas() {
+            const respuestasCorrectas = {
+                respuesta1: '∈',
+                respuesta2: '∉',
+                respuesta3: '∈',
+                respuesta4: '∈',
+                respuesta5: '∈',
+                respuesta6: '∈',
+                respuesta7: '∈',
+                respuesta8: '∉'
+            };
+
+            const justificaciones = {
+                respuesta1: '3 pertenece al conjunto A.',
+                respuesta2: '5 no pertenece al conjunto B.',
+                respuesta3: '−2 pertenece al conjunto B.',
+                respuesta4: '4 pertenece al conjunto C.',
+                respuesta5: '0 pertenece al conjunto A.',
+                respuesta6: '−1 pertenece al conjunto B.',
+                respuesta7: '2 pertenece al conjunto B.',
+                respuesta8: '2 no pertenece al conjunto C.'
+            };
+
+            let tablaHTML = '<table><tr><th>Pregunta</th><th>Respuesta Seleccionada</th><th>Estado</th><th>Justificación</th></tr>';
+
+                            for (let i = 1; i <= 8; i++) {
+                    const seleccionada = document.getElementById(`respuesta${i}`).value;
+                    const estado = seleccionada === respuestasCorrectas[`respuesta${i}`] ? 'Correcto' : 'Incorrecto';
+                    const justificacion = estado === 'Incorrecto' ? justificaciones[`respuesta${i}`] : '';
+                    tablaHTML += `<tr>
+                                    <td>${String.fromCharCode(96 + i)}. ${i}</td>
+                                    <td>${seleccionada}</td>
+                                    <td>${estado}</td>
+                                    <td class="justificacion">${justificacion}</td>
+                                  </tr>`;
+                }
+                tablaHTML += '</table>';
+                document.getElementById('resultado').innerHTML = tablaHTML;
+        }
+    </script>
+</body>
+</html>

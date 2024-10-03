@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemáticas: Gráfica de Función de Segundo Grado</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e3f2fd; /* Color de fondo suave */
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #0d47a1; /* Color azul profundo para los encabezados */
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .container:hover {
+            transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
+        }
+        canvas {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .description {
+            text-align: justify;
+            line-height: 1.6; /* Espaciado entre líneas */
+        }
+        .button {
+            display: inline-block;
+            background-color: #0d47a1; /* Color azul profundo */
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            border: none;
+            margin: 10px 5px; /* Margen entre botones */
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #1565c0; /* Color azul más oscuro al pasar el ratón */
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #555; /* Color gris para el texto del pie de página */
+        }
+    </style>
+</head>
+<body>
+   <audio id="audio" autoplay loop>
+        <source src="audio.mp3" type="audio/mpeg"> <!-- Cambia "musica.mp3" por el nombre de tu archivo -->
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    <div class="container">
+        <h1>Matemáticas: Gráfica de Función de Segundo Grado</h1>
+        
+        <h2>¿Qué es una Función de Segundo Grado?</h2>
+        <p class="description">Una función de segundo grado tiene la forma:</p>
+        <p class="description"><strong>f(x) = ax² + bx + c</strong></p>
+        <p class="description">Donde <strong>a</strong>, <strong>b</strong> y <strong>c</strong> son constantes que determinan la forma de la parábola. Por ejemplo, si <strong>a</strong> es positivo, la parábola se abre hacia arriba; si es negativo, se abre hacia abajo.</p>
+
+        <h2>Ejemplo: f(x) = x²</h2>
+        <p class="description">En este caso:</p>
+        <ul class="description">
+            <li><strong>a = 1</strong></li>
+            <li><strong>b = 0</strong></li>
+            <li><strong>c = 0</strong></li>
+        </ul>
+        <p class="description">Esta función tiene su vértice en el origen (0,0) y abre hacia arriba.</p>
+
+        <h2>Gráfica de la Función</h2>
+        <canvas id="grafica"></canvas>
+        <script>
+            const ctx = document.getElementById('grafica').getContext('2d');
+            const labels = [-3, -2, -1, 0, 1, 2, 3]; // Valores de x
+            const data = labels.map(x => x**2); // Calculamos f(x) para f(x) = x²
+
+            const grafica = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'f(x) = x²',
+                        data: data,
+                        borderColor: '#0d47a1', // Color de línea azul profundo
+                        backgroundColor: 'rgba(13, 71, 161, 0.2)', // Color de fondo con transparencia
+                        fill: true,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'x',
+                                color: '#0d47a1',
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'f(x)',
+                                color: '#0d47a1',
+                            }
+                        }
+                    },
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#0d47a1' // Color de texto de la leyenda
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <div class="navigation">
+            <button class="button" onclick="location.href='siguiente-page2.html'">Atrás</button>
+            <button class="button" onclick="location.href='siguiente-page4.html'">Siguiente</button>
+        </div>
+    </div>
+
+    
+</body>
+</html>
